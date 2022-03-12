@@ -6,7 +6,7 @@ import com.example.breweryapp.domain.entities.BreweryModel
 
 @Database(
     entities = [BreweryModel::class],
-    version = 1
+    version = 3
 )
 abstract class BreweryDatabase: RoomDatabase() {
 

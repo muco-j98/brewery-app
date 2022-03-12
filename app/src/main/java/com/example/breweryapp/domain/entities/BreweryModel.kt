@@ -23,4 +23,6 @@ data class BreweryModel(
     val street: String,
     val updated_at: String,
     val website_url: String
-)
+) {
+    var distance: Long = 0
+}

@@ -8,8 +8,9 @@ import com.example.breweryapp.utils.Resource
 import kotlinx.coroutines.flow.*
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
 
-class BreweryRepositoryImpl(
+class BreweryRepositoryImpl @Inject constructor(
     private val api: BreweryApi,
     private val dao: BreweryDAO
 ): BreweryRepository {
