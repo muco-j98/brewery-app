@@ -3,11 +3,11 @@
 <layout>
 
     <data>
+        <import type="android.text.Html"/>
 
         <variable
             name="brewery"
             type="com.example.breweryapp.domain.entities.BreweryModel" />
-
     </data>
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,9 +28,9 @@
 
             <TextView
                 android:id="@+id/brewery_name"
+                android:text="@{Html.fromHtml(String.format(@string/brewery_name,brewery.name))}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text= "@{@string/brewery_name(brewery.name)}"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@{`Location: ` + brewery.street + ' ' + brewery.city + ` - ` + brewery.state}"
+                android:text="@{Html.fromHtml(String.format(@string/brewery_address,brewery.street,brewery.city,brewery.state))}"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/brewery_name" />
 
@@ -49,24 +49,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:text="@{`Distance: ` + Float.toString(brewery.distance)}"
+                android:text="@{Html.fromHtml(String.format(@string/brewery_distance,brewery.distance))}"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/brewery_address" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
