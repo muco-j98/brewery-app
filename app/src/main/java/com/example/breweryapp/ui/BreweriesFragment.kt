@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.breweryapp.databinding.BreweriesFragmentBinding
 import com.example.breweryapp.presentation.BreweryViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class BreweriesFragment : Fragment() {
@@ -41,7 +42,6 @@ class BreweriesFragment : Fragment() {
         setupTextListener()
 
         viewModel.breweries.observe(viewLifecycleOwner) {
-            Log.i("VLORE", "onViewCreated: " + it)
             breweryAdapter.submitList(it.data)
         }
     }
@@ -53,9 +53,8 @@ class BreweriesFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                if (s != null && s.isNotEmpty()) {
-                    Log.i("VLORE", "afterTextChanged: $s")
-                    viewModel.searchQuery.value = s.toString()
+                s?.let {
+                    viewModel.searchQuery.value = s.toString().trim()
                 }
             }
         })

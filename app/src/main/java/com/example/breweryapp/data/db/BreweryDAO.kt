@@ -15,6 +15,6 @@ interface BreweryDAO {
     @Query("DELETE FROM brewery_table WHERE id IN (:breweries)")
     suspend fun deleteBreweries(breweries: List<String>)
 
-    @Query("SELECT * FROM brewery_table WHERE name LIKE '%' || :breweryName || '%'")
-    suspend fun getBreweries(breweryName: String): List<BreweryModel>
+    @Query("SELECT * FROM brewery_table WHERE city LIKE '%' || :cityName || '%'")
+    suspend fun getBreweries(cityName: String): List<BreweryModel>
 }

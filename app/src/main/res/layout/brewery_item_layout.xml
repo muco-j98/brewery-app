@@ -30,7 +30,7 @@
                 android:id="@+id/brewery_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{brewery.name}"
+                android:text= "@{@string/brewery_name(brewery.name)}"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,29 +40,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@{brewery.state + ' ' + brewery.city + ' ' + brewery.street}"
+                android:text="@{`Location: ` + brewery.street + ' ' + brewery.city + ` - ` + brewery.state}"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/brewery_name" />
-
-            <TextView
-                android:id="@+id/distance_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Distance:"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/brewery_address" />
 
             <TextView
                 android:id="@+id/brewery_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Float.toString(brewery.distance)}"
                 android:layout_marginStart="2dp"
+                android:text="@{`Distance: ` + Float.toString(brewery.distance)}"
                 android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@id/distance_label"
-                app:layout_constraintTop_toTopOf="@id/distance_label" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/brewery_address" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

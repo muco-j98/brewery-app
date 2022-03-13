@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Brewery App</string>
+    <string name="brewery_name"><b>Name:</b> %s</string>
 </resources>

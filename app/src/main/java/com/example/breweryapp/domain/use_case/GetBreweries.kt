@@ -1,5 +1,6 @@
 package com.example.breweryapp.domain.use_case
 
+import android.util.Log
 import com.example.breweryapp.domain.entities.BreweryModel
 import com.example.breweryapp.domain.repository.BreweryRepository
 import com.example.breweryapp.utils.Resource
@@ -15,6 +16,7 @@ class GetBreweries @Inject constructor(
         if (cityName.isBlank()) {
             return flow { }
         }
+        Log.i("VLORE", "senttttttttt: $cityName")
         return repository.getBreweries(cityName)
     }
 }
