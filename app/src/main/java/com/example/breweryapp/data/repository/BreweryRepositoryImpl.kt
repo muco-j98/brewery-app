@@ -13,7 +13,7 @@ import javax.inject.Inject
 class BreweryRepositoryImpl @Inject constructor(
     private val api: BreweryApi,
     private val dao: BreweryDAO
-): BreweryRepository {
+) : BreweryRepository {
     override fun getBreweries(cityName: String): Flow<Resource<List<BreweryModel>>> = flow {
         emit(Resource.Loading())
 
