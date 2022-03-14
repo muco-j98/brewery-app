@@ -3,17 +3,17 @@ package com.example.breweryapp.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.breweryapp.databinding.BreweriesFragmentBinding
 import com.example.breweryapp.presentation.BreweryViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
+import com.example.breweryapp.utils.Resource.*
 
 @AndroidEntryPoint
 class BreweriesFragment : Fragment() {
@@ -22,6 +22,7 @@ class BreweriesFragment : Fragment() {
 
     private var _binding: BreweriesFragmentBinding? = null
     private val binding get() = _binding!!
+    private var toast: Toast? = null
 
     private lateinit var breweryAdapter: BreweryAdapter
 
@@ -42,7 +43,42 @@ class BreweriesFragment : Fragment() {
         setupTextListener()
 
         viewModel.breweries.observe(viewLifecycleOwner) {
-            breweryAdapter.submitList(it.data)
+            when (it) {
+                is Loading -> {
+                    showLoadingBar(true)
+                }
+                is Success -> {
+                    it.data?.let { data ->
+                        breweryAdapter.submitList(data)
+                        if (data.isEmpty()) {
+                            displayEmptyMessage(true)
+                        } else {
+                            displayEmptyMessage(false)
+                        }
+                    }
+                    showLoadingBar(false)
+                }
+                is Error -> {
+                    showLoadingBar(false)
+                }
+            }
+
+        }
+    }
+
+    private fun displayEmptyMessage(show: Boolean) {
+        if (show) {
+            binding.emptyTv.visibility = View.VISIBLE
+        } else {
+            binding.emptyTv.visibility = View.GONE
+        }
+    }
+
+    private fun showLoadingBar(show: Boolean) {
+        if (show) {
+            binding.pBar.visibility = View.VISIBLE
+        } else {
+            binding.pBar.visibility = View.GONE
         }
     }
 

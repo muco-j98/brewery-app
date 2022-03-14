@@ -3,4 +3,5 @@
     <string name="brewery_name"><![CDATA[<b>Name: </b>]]> %s</string>
     <string name="brewery_address"><![CDATA[<b>Location: </b>]]> %s %s - %s</string>
     <string name="brewery_distance"><![CDATA[<b>Distance: </b>]]> %s</string>
+    <string name="no_breweries_available">No breweries available</string>
 </resources>
