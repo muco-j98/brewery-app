@@ -62,7 +62,6 @@ class BreweriesFragment : Fragment() {
                     showLoadingBar(false)
                 }
             }
-
         }
     }
 
