@@ -2,7 +2,6 @@ package com.example.breweryapp.domain.entities
 
 import android.app.Activity
 import android.content.Context
-import android.location.Location
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.breweryapp.utils.Utils
@@ -32,26 +31,26 @@ data class BreweryModel(
     val updated_at: String?,
     val website_url: String?
 ) {
-    private val latitudeFloat: Float
+    private val latitudeFloat: Double
         get() {
             latitude?.let {
-                return it.toFloat()
+                return it.toDouble()
             }
-            return 0f
+            return 0.0
         }
 
-    private val longitudeFloat: Float
+    private val longitudeFloat: Double
         get() {
             longitude?.let {
-                return it.toFloat()
+                return it.toDouble()
             }
-            return 0f
+            return 0.0
         }
 
     fun distance(context: Context): Double {
         val sharedPref = context.getSharedPreferences(Utils.MY_PREFERENCE, Activity.MODE_PRIVATE)
-        val lat1 = latitudeFloat.toDouble()
-        val lon1 = longitudeFloat.toDouble()
+        val lat1 = latitudeFloat
+        val lon1 = longitudeFloat
 
         val lat2 = sharedPref.getFloat(Utils.LATITUDE, 0F).toDouble()
         val lon2 = sharedPref.getFloat(Utils.LONGITUDE, 0F).toDouble()
