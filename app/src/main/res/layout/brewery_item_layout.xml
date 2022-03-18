@@ -39,7 +39,7 @@
                 android:id="@+id/brewery_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="3dp"
                 android:text="@{Html.fromHtml(String.format(@string/brewery_address,brewery.street ?? ``,brewery.city ?? ``,brewery.state ?? ``))}"
                 android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/brewery_name" />
@@ -48,6 +48,7 @@
                 android:id="@+id/brewery_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:text="@{Html.fromHtml(String.format(@string/brewery_distance,brewery.distance(context)))}"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"

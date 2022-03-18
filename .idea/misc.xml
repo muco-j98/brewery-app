@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/StudioProjects/brewery-app/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/HP/StudioProjects/brewery-app/app/src/main/res/drawable/ic_search_icon.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/HP/StudioProjects/brewery-app/app/src/main/res/layout/brewery_item_layout.xml" value="0.3625" />
       </map>
     </option>
