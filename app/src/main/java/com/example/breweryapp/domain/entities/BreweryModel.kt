@@ -1,7 +1,15 @@
 package com.example.breweryapp.domain.entities
 
+import android.app.Activity
+import android.content.Context
+import android.location.Location
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.breweryapp.utils.Utils
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.roundToInt
+import kotlin.math.sin
 
 @Entity(tableName = "brewery_table")
 data class BreweryModel(
@@ -24,5 +32,46 @@ data class BreweryModel(
     val updated_at: String?,
     val website_url: String?
 ) {
-    var distance: Long = 0
+    private val latitudeFloat: Float
+        get() {
+            latitude?.let {
+                return it.toFloat()
+            }
+            return 0f
+        }
+
+    private val longitudeFloat: Float
+        get() {
+            longitude?.let {
+                return it.toFloat()
+            }
+            return 0f
+        }
+
+    fun distance(context: Context): Double {
+        val sharedPref = context.getSharedPreferences(Utils.MY_PREFERENCE, Activity.MODE_PRIVATE)
+        val lat1 = latitudeFloat.toDouble()
+        val lon1 = longitudeFloat.toDouble()
+
+        val lat2 = sharedPref.getFloat(Utils.LATITUDE, 0F).toDouble()
+        val lon2 = sharedPref.getFloat(Utils.LONGITUDE, 0F).toDouble()
+        val theta = lon1 - lon2
+        var dist = (sin(deg2rad(lat1))
+                * sin(deg2rad(lat2))
+                + (cos(deg2rad(lat1))
+                * cos(deg2rad(lat2))
+                * cos(deg2rad(theta))))
+        dist = acos(dist)
+        dist = rad2deg(dist)
+        dist *= 60 * 1.1515
+        return (dist * 100.0).roundToInt() / 100.0
+    }
+
+    private fun deg2rad(deg: Double): Double {
+        return deg * Math.PI / 180.0
+    }
+
+    private fun rad2deg(rad: Double): Double {
+        return rad * 180.0 / Math.PI
+    }
 }
